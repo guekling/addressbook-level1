@@ -93,6 +93,7 @@ public class AddressBook {
     private static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
     private static final String MESSAGE_USING_DEFAULT_FILE = "Using default storage file : " + DEFAULT_STORAGE_FILEPATH;
     private static final String MESSAGE_SORT_SUCCESS = "Address book has been successfully sorted!";
+    private static final String MESSAGE_EMPTY_ADDRESS_BOOK = "Address book is empty.";
 
     // These are the prefix strings to define the data type of a command parameter
     private static final String PERSON_DATA_PREFIX_PHONE = "p/";
@@ -604,9 +605,11 @@ public class AddressBook {
      * Display the names of all persons in the address book by alphabetical order.
      */
     private static String executeSortList() {
-        Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> person.get
-                (PERSON_PROPERTY_NAME)));
+        if (isAddressBookEmpty()) {
+            return getMessageForEmptyAddressBook();
+        }
 
+        Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> person.get(PERSON_PROPERTY_NAME)));
         return getMessageForSuccessfulSort();
     }
 
@@ -618,6 +621,25 @@ public class AddressBook {
     private static String getMessageForSuccessfulSort() {
         return String.format(MESSAGE_SORT_SUCCESS);
     }
+
+    /**
+     * Constructs a feedback message for a successful delete person command execution.
+     *
+     * COMMENT NEEDS EDITING
+     */
+    private static boolean isAddressBookEmpty() {
+        return getAllPersonsInAddressBook().isEmpty();
+    }
+
+    /**
+     * Constructs a feedback message for a successful delete person command execution.
+     *
+     * COMMENT NEEDS EDITING
+     */
+    private static String getMessageForEmptyAddressBook() {
+        return String.format(MESSAGE_EMPTY_ADDRESS_BOOK);
+    }
+
 
     /**
      * Requests to terminate the program.
