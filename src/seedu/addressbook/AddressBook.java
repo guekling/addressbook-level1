@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.Comparator;
 
 /*
  * NOTE : =============================================================
@@ -91,6 +92,7 @@ public class AddressBook {
     private static final String MESSAGE_STORAGE_FILE_CREATED = "Created new empty storage file: %1$s";
     private static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
     private static final String MESSAGE_USING_DEFAULT_FILE = "Using default storage file : " + DEFAULT_STORAGE_FILEPATH;
+    private static final String MESSAGE_SORT_SUCCESS = "Address book has been successfully sorted!";
 
     // These are the prefix strings to define the data type of a command parameter
     private static final String PERSON_DATA_PREFIX_PHONE = "p/";
@@ -129,6 +131,10 @@ public class AddressBook {
     private static final String COMMAND_HELP_WORD = "help";
     private static final String COMMAND_HELP_DESC = "Shows program usage instructions.";
     private static final String COMMAND_HELP_EXAMPLE = COMMAND_HELP_WORD;
+
+    private static final String COMMAND_SORT_WORD = "sort";
+    private static final String COMMAND_SORT_DESC = "Display the names of all persons in address book in alphabetical order.";
+    private static final String COMMAND_SORT_EXAMPLE = COMMAND_SORT_WORD;
 
     private static final String COMMAND_EXIT_WORD = "exit";
     private static final String COMMAND_EXIT_DESC = "Exits the program.";
@@ -394,6 +400,8 @@ public class AddressBook {
                 return executeClearAddressBook();
             case COMMAND_HELP_WORD:
                 return getUsageInfoForAllCommands();
+            case COMMAND_SORT_WORD:
+                return executeSortList();
             case COMMAND_EXIT_WORD:
                 executeExitProgramRequest();
             default:
@@ -590,6 +598,25 @@ public class AddressBook {
         ArrayList<HashMap<String, String>> toBeDisplayed = getAllPersonsInAddressBook();
         showToUser(toBeDisplayed);
         return getMessageForPersonsDisplayedSummary(toBeDisplayed);
+    }
+
+    /**
+     * Display the names of all persons in the address book by alphabetical order.
+     */
+    private static String executeSortList() {
+        //Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> person.get
+                //(PERSON_PROPERTY_NAME)));
+
+        return getMessageForSuccessfulSort();
+    }
+
+    /**
+     * Constructs a feedback message for a successful delete person command execution.
+     *
+     * COMMENT NEEDS EDITING
+     */
+    private static String getMessageForSuccessfulSort() {
+        return String.format(MESSAGE_SORT_SUCCESS);
     }
 
     /**
