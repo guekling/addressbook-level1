@@ -604,8 +604,8 @@ public class AddressBook {
      * Display the names of all persons in the address book by alphabetical order.
      */
     private static String executeSortList() {
-        //Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> person.get
-                //(PERSON_PROPERTY_NAME)));
+        Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> person.get
+                (PERSON_PROPERTY_NAME)));
 
         return getMessageForSuccessfulSort();
     }
