@@ -134,7 +134,8 @@ public class AddressBook {
     private static final String COMMAND_HELP_EXAMPLE = COMMAND_HELP_WORD;
 
     private static final String COMMAND_SORT_WORD = "sort";
-    private static final String COMMAND_SORT_DESC = "Display the names of all persons in address book in alphabetical order.";
+    private static final String COMMAND_SORT_DESC = "Arrange the names of all persons in address book in alphabetical" +
+            " order.";
     private static final String COMMAND_SORT_EXAMPLE = COMMAND_SORT_WORD;
 
     private static final String COMMAND_EXIT_WORD = "exit";
@@ -602,7 +603,7 @@ public class AddressBook {
     }
 
     /**
-     * Display the names of all persons in the address book by alphabetical order.
+     * Arrange the names of all persons in the address book by alphabetical order.
      */
     private static String executeSortList() {
         if (isAddressBookEmpty()) {
@@ -614,27 +615,21 @@ public class AddressBook {
     }
 
     /**
-     * Constructs a feedback message for a successful delete person command execution.
-     *
-     * COMMENT NEEDS EDITING
+     * Constructs a feedback message for a successful sort address book command execution.
      */
     private static String getMessageForSuccessfulSort() {
         return String.format(MESSAGE_SORT_SUCCESS);
     }
 
     /**
-     * Constructs a feedback message for a successful delete person command execution.
-     *
-     * COMMENT NEEDS EDITING
+     * Checks if address book is empty.
      */
     private static boolean isAddressBookEmpty() {
         return getAllPersonsInAddressBook().isEmpty();
     }
 
     /**
-     * Constructs a feedback message for a successful delete person command execution.
-     *
-     * COMMENT NEEDS EDITING
+     * Constructs a feedback message when address book is empty during a sort command execution.
      */
     private static String getMessageForEmptyAddressBook() {
         return String.format(MESSAGE_EMPTY_ADDRESS_BOOK);
