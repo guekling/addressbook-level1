@@ -260,16 +260,16 @@ public class AddressBook {
      * @param args full program arguments passed to application main method
      */
     private static void processProgramArgs(String[] args) {
-        if (args.length >= 2) {
+        if (args.length >= 2) { // magic number used
             showToUser(MESSAGE_INVALID_PROGRAM_ARGS);
             exitProgram();
         }
 
-        if (args.length == 1) {
+        if (args.length == 1) { // magic number used
             setupGivenFileForStorage(args[0]);
         }
 
-        if (args.length == 0) {
+        if (args.length == 0) { // magic number used
             setupDefaultFileForStorage();
         }
     }
