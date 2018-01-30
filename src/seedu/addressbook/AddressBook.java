@@ -614,7 +614,9 @@ public class AddressBook {
     }
 
     /**
-     * Constructs a feedback message for a successful sort address book command execution.
+     * Constructs a feedback message for a successful sort address book command execution, or when address book is
+     * empty.
+     *
      * @param message
      */
     private static String getMessageForSort(String message) {
