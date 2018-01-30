@@ -113,6 +113,12 @@ Examples:
 > Clears all entries from the address book.  
 Format: `clear`  
 
+#### Sorting all persons: `sort`
+
+> Arrange the names of all persons in the address book by alphabetical order.
+
+Format: `sort` 
+
 #### Exiting the program: `exit`
 Format: `exit`  
 
