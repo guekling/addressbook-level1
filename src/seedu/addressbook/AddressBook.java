@@ -462,7 +462,7 @@ public class AddressBook {
      */
     private static String getMessageForSuccessfulAddPerson(HashMap<String, String> addedPerson) {
         return String.format(MESSAGE_ADDED,
-                getNameFromPerson(addedPerson), getPhoneFromPerson(addedPerson), getEmailFromPerson(addedPerson));
+                getInformationFromPerson(addedPerson, PERSON_PROPERTY_NAME), getInformationFromPerson(addedPerson, PERSON_PROPERTY_PHONE), getInformationFromPerson(addedPerson, PERSON_PROPERTY_EMAIL));
     }
 
     /**
@@ -508,7 +508,7 @@ public class AddressBook {
     private static ArrayList<HashMap<String, String>> getPersonsWithNameContainingAnyKeyword(Collection<String> keywords) {
         final ArrayList<HashMap<String, String>> matchedPersons = new ArrayList<>();
         for (HashMap<String, String> person : getAllPersonsInAddressBook()) {
-            final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
+            final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getInformationFromPerson(person, PERSON_PROPERTY_NAME)));
             if (!Collections.disjoint(wordsInName, keywords)) {
                 matchedPersons.add(person);
             }
@@ -609,7 +609,7 @@ public class AddressBook {
         if (isAddressBookEmpty()) {
             return getMessageForSort(MESSAGE_EMPTY_ADDRESS_BOOK);
         }
-        Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> person.get(PERSON_PROPERTY_NAME)));
+        Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> getInformationFromPerson(person, PERSON_PROPERTY_NAME)));
         return getMessageForSort(MESSAGE_SORT_SUCCESS);
     }
 
@@ -719,7 +719,7 @@ public class AddressBook {
      */
     private static String getMessageForFormattedPersonData(HashMap<String, String> person) {
         return String.format(MESSAGE_DISPLAY_PERSON_DATA,
-                getNameFromPerson(person), getPhoneFromPerson(person), getEmailFromPerson(person));
+                getInformationFromPerson(person, PERSON_PROPERTY_NAME), getInformationFromPerson(person, PERSON_PROPERTY_PHONE), getInformationFromPerson(person, PERSON_PROPERTY_EMAIL));
     }
 
     /**
@@ -884,30 +884,13 @@ public class AddressBook {
      */
 
     /**
-     * Returns the given person's name
+     * Returns the given person's name, email or phone number
      *
      * @param person whose name you want
+     * @param information
      */
-    private static String getNameFromPerson(HashMap<String, String> person) {
-        return person.get(PERSON_PROPERTY_NAME);
-    }
-
-    /**
-     * Returns given person's phone number
-     *
-     * @param person whose phone number you want
-     */
-    private static String getPhoneFromPerson(HashMap<String, String> person) {
-        return person.get(PERSON_PROPERTY_PHONE);
-    }
-
-    /**
-     * Returns given person's email
-     *
-     * @param person whose email you want
-     */
-    private static String getEmailFromPerson(HashMap<String, String> person) {
-        return person.get(PERSON_PROPERTY_EMAIL);
+    private static String getInformationFromPerson(HashMap<String, String> person, String information) {
+        return person.get(information);
     }
 
     /**
@@ -934,7 +917,7 @@ public class AddressBook {
      */
     private static String encodePersonToString(HashMap<String, String> person) {
         return String.format(PERSON_STRING_REPRESENTATION,
-                getNameFromPerson(person), getPhoneFromPerson(person), getEmailFromPerson(person));
+                getInformationFromPerson(person, PERSON_PROPERTY_NAME), getInformationFromPerson(person, PERSON_PROPERTY_PHONE), getInformationFromPerson(person, PERSON_PROPERTY_EMAIL));
     }
 
     /**
@@ -1079,9 +1062,9 @@ public class AddressBook {
      * @param person String array representing the person (used in internal data)
      */
     private static boolean isPersonDataValid(HashMap<String, String> person) {
-        return isPersonNameValid(person.get(PERSON_PROPERTY_NAME))
-                && isPersonPhoneValid(person.get(PERSON_PROPERTY_PHONE))
-                && isPersonEmailValid(person.get(PERSON_PROPERTY_EMAIL));
+        return isPersonNameValid(getInformationFromPerson(person, PERSON_PROPERTY_NAME))
+                && isPersonPhoneValid(getInformationFromPerson(person, PERSON_PROPERTY_PHONE))
+                && isPersonEmailValid(getInformationFromPerson(person, PERSON_PROPERTY_EMAIL));
     }
 
     /*
