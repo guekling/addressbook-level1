@@ -607,17 +607,18 @@ public class AddressBook {
      */
     private static String executeSortList() {
         if (isAddressBookEmpty()) {
-            return getMessageForEmptyAddressBook();
+            return getMessageForSort(MESSAGE_EMPTY_ADDRESS_BOOK);
         }
         Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> person.get(PERSON_PROPERTY_NAME)));
-        return getMessageForSuccessfulSort();
+        return getMessageForSort(MESSAGE_SORT_SUCCESS);
     }
 
     /**
      * Constructs a feedback message for a successful sort address book command execution.
+     * @param message
      */
-    private static String getMessageForSuccessfulSort() {
-        return String.format(MESSAGE_SORT_SUCCESS);
+    private static String getMessageForSort(String message) {
+        return String.format(message);
     }
 
     /**
@@ -625,13 +626,6 @@ public class AddressBook {
      */
     private static boolean isAddressBookEmpty() {
         return getAllPersonsInAddressBook().isEmpty();
-    }
-
-    /**
-     * Constructs a feedback message when address book is empty during a sort command execution.
-     */
-    private static String getMessageForEmptyAddressBook() {
-        return String.format(MESSAGE_EMPTY_ADDRESS_BOOK);
     }
 
 
