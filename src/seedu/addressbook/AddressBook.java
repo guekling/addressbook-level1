@@ -592,7 +592,8 @@ public class AddressBook {
         if (isAddressBookEmpty()) {
             return getMessageForSort(MESSAGE_EMPTY_ADDRESS_BOOK);
         }
-        Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> getInformationFromPerson(person, PERSON_PROPERTY_NAME)));
+        Collections.sort(getAllPersonsInAddressBook(), Comparator.comparing(person -> getInformationFromPerson(
+                person, PERSON_PROPERTY_NAME)));
         return getMessageForSort(MESSAGE_SORT_SUCCESS);
     }
 
