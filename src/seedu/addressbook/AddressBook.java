@@ -549,7 +549,7 @@ public class AddressBook {
      * @param index to check
      * @return whether it is valid
      */
-    private static boolean isDisplayIndexValidForLastPersonListingView(int index) {
+    private static boolean isDisplayIndexValidForLastPersonListingView(int index) { // complicated expression
         return index >= DISPLAYED_INDEX_OFFSET && index < latestPersonListingView.size() + DISPLAYED_INDEX_OFFSET;
     }
 
